@@ -1,7 +1,13 @@
 venv/
-artifacts/
 .env
 
 __pycache__/
 *.pyc
 *.egg-info/
+
+# generated data stays out; hand-written manifests come in.
+# must exclude CONTENTS, not the dir - git will not descend into an excluded dir.
+artifacts/*
+!artifacts/bench/
+artifacts/bench/*
+!artifacts/bench/*.jsonl
