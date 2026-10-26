@@ -1,0 +1,5 @@
+paths:
+  bench: artifacts/bench        # manifests + clips, the source of truth
+  runs: artifacts/runs          # one JSONL of raw records per run
+  results: artifacts/results    # metrics + tables, written by eval
+  work: artifacts/work/16k      # 16 kHz mono copies the ASR is fed

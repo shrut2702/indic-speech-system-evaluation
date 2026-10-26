@@ -1,0 +1,8 @@
+venv/
+artifacts/
+.env
+
+__pycache__/
+*.pyc
+
+!artifacts/bench/*.jsonl

@@ -1,0 +1,14 @@
+-e .
+
+# Pinned: every one of these moves the reported numbers.
+torch==2.6.0+cu124          # cu124 wheel, from the pytorch index
+torchaudio==2.6.0+cu124     # resample 24 kHz bench clips -> 16 kHz for the ASR
+transformers==5.20.2        # SraVaani via trust_remote_code, Gemma 3 chat template
+tokenizers==0.23.3
+sentencepiece==0.2.2
+safetensors==0.8.0
+accelerate==1.15.0
+bitsandbytes==0.50.2        # NF4 kernels for the prequantized Gemma 3 4B checkpoint
+soundfile==0.14.0
+numpy==2.5.4
+PyYAML==6.0.3

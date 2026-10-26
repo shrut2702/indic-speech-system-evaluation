@@ -1,0 +1,10 @@
+# Swap models here, never in code: the ablation runs the same harness twice and diffs.
+asr:
+  model: ARTPARK-IISc/SraVaani-1.0
+  # no language argument and no decoder switch; input is resampled to 16 kHz mono
+  batch_size: 1          # per-clip timing, so latency is attributable
+llm:
+  model: unsloth/gemma-3-4b-it-bnb-4bit   # prequantized NF4; fp16 4B will not fit 6 GB
+  dtype: float16         # Turing sm75 has no bf16
+  max_new_tokens: 48
+  temperature: 0         # greedy, so a rerun reproduces the record
