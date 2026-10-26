@@ -1,7 +1,0 @@
-README.md
-setup.py
-src/speechSys/__init__.py
-src/speechSys.egg-info/PKG-INFO
-src/speechSys.egg-info/SOURCES.txt
-src/speechSys.egg-info/dependency_links.txt
-src/speechSys.egg-info/top_level.txt

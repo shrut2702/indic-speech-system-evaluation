@@ -4,5 +4,4 @@ artifacts/
 
 __pycache__/
 *.pyc
-
-!artifacts/bench/*.jsonl
+*.egg-info/
