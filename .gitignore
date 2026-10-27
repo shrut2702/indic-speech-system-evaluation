@@ -11,3 +11,6 @@ artifacts/*
 !artifacts/bench/
 artifacts/bench/*
 !artifacts/bench/*.jsonl
+
+# local working notes, not part of the deliverable
+CLAUDE.md
