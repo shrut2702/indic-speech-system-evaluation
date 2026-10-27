@@ -56,6 +56,11 @@ def main():
     # the checkpoint ships bnb_4bit_compute_dtype=bfloat16; Turing sm75 has no bf16
     q = dict(AutoConfig.from_pretrained(REPO, token=env_token()).quantization_config)
     q["bnb_4bit_compute_dtype"] = "float16"
+    # transformers pre-reserves the whole model as one block; WDDM cannot hand out
+    # 2.95 GiB contiguous on a 6 GB display card. It is only an optimisation.
+    import transformers.modeling_utils as _mu
+    _mu.caching_allocator_warmup = lambda *a, **k: None
+
     model = AutoModelForCausalLM.from_pretrained(
         REPO, device_map=dev, dtype=torch.float16, token=env_token(),
         quantization_config=BitsAndBytesConfig(

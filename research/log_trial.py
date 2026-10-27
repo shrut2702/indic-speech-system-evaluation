@@ -83,7 +83,7 @@ def main():
                     "acoustic_condition": cond,
                     "clip_path": str(clip.relative_to(ROOT)).replace("\\", "/"),
                     "audio_duration_s": round(duration(clip), 3),
-                    "reference_transcript": ref["text"],
+                    "reference_transcript": ref["reference_transcript"],
                     "reference_answer": ref["reference_answer"],
                     "reference_entities": ref.get("reference_entities"),
                     "asr_hypothesis": hyp,

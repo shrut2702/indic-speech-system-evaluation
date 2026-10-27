@@ -123,6 +123,8 @@ def main():
     ap.add_argument("--langs", nargs="+", default=["en", "hi", "gu", "ta", "pa"])
     ap.add_argument("--seed", default="vaani")
     ap.add_argument("--speaker", help="force this voice; writes to artifacts/trial/ as a probe")
+    ap.add_argument("--to-bench", action="store_true",
+                    help="with --speaker: write into the bench, not the probe folder")
     ap.add_argument("--skip-existing", action="store_true", help="leave clips already on disk alone")
     args = ap.parse_args()
 
@@ -138,7 +140,8 @@ def main():
                 if args.item and it["item_id"] != args.item:
                     continue
                 spk = args.speaker or speakers[it["item_id"]]
-                out = (ROOT / "artifacts" / "trial" / f"probe_{lang}_{spk}.wav" if args.speaker
+                probe = args.speaker and not args.to_bench
+                out = (ROOT / "artifacts" / "trial" / f"probe_{lang}_{spk}.wav" if probe
                        else ROOT / "artifacts" / "bench" / "clean" / lang / it["category"] / f"{it['item_id']}.wav")
                 if args.skip_existing and out.exists():
                     continue
@@ -152,7 +155,7 @@ def main():
                 out.write_bytes(audio)
                 took = time.perf_counter() - t
                 rate, ch, dur = wav_info(out)
-                if args.speaker:
+                if probe:
                     print(f"  PROBE {lang} {spk:28} {rate}Hz/{ch}ch {dur:5.2f}s -> {out.name}")
                     n += 1
                     continue
