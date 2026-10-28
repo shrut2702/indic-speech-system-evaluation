@@ -2,7 +2,9 @@
 import json
 from pathlib import Path
 
-CONDITIONS = ("clean", "noisy_5db")
+# noisy_5db clips and results are kept, but are not a reported condition: it failed
+# to discriminate (see CLAUDE.md). The default pair is what gets reported.
+CONDITIONS = ("clean", "noisy_0db")
 
 
 def languages(bench_dir):

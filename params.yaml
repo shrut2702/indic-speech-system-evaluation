@@ -1,10 +1,22 @@
 # Swap models here, never in code: the ablation runs the same harness twice and diffs.
 asr:
   model: ARTPARK-IISc/SraVaani-1.0
+  # Hosted alternative: saaras:v4 (any name starting with "saaras" takes the API path,
+  # no VRAM, no local load). Override without editing this file: --asr-model saaras:v4
+  mode: transcribe       # saaras only: transcribe|verbatim|translit|codemix
   # no language argument and no decoder switch; input is resampled to 16 kHz mono
   batch_size: 1          # per-clip timing, so latency is attributable
 llm:
-  model: unsloth/gemma-3-4b-it-bnb-4bit   # prequantized NF4; fp16 4B will not fit 6 GB
-  dtype: float16         # Turing sm75 has no bf16
-  max_new_tokens: 48
-  temperature: 0         # greedy, so a rerun reproduces the record
+  model: sarvam-105b     # hosted API; a name starting with "sarvam" selects that path.
+                         # Local alternative: unsloth/gemma-3-4b-it-bnb-4bit (needs
+                         # ~3 GB VRAM + commit headroom this machine does not have).
+  dtype: float16         # local path only; Turing sm75 has no bf16
+  max_new_tokens: 512   # LOCAL path only. The Sarvam API ignores a completion cap
+                        # for reasoning (1024 still yielded 2048-token calls), so the
+                        # request omits it entirely.
+  temperature: 0         # requested, but the hosted model is not deterministic anyway
+  reasoning_effort: default   # API default is "low", i.e. reasoning ON. Measured
+                        # alternative "off": 115x fewer tokens, 10x faster, zero empty
+                        # responses and no retries, but ~9 of 125 items less accurate
+                        # (0.820 vs 0.892 over two runs each) and unstable about which
+                        # script to answer English questions in. Kept ON.

@@ -3,3 +3,4 @@ paths:
   runs: artifacts/runs          # one JSONL of raw records per run
   results: artifacts/results    # metrics + tables, written by eval
   work: artifacts/work/16k      # 16 kHz mono copies the ASR is fed
+  hf_cache: artifacts/hf        # model downloads; keeps them off the system drive
