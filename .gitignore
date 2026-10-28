@@ -11,6 +11,10 @@ artifacts/*
 !artifacts/bench/
 artifacts/bench/*
 !artifacts/bench/*.jsonl
+!artifacts/runs/
+artifacts/runs/*
+!artifacts/runs/pipeline*
+artifacts/runs/pipeline_noisy_5db_sravaani1.0_sarvam105b.jsonl
 
 # local working notes, not part of the deliverable
 CLAUDE.md
