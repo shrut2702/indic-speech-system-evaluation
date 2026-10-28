@@ -15,6 +15,7 @@ artifacts/bench/*
 artifacts/runs/*
 !artifacts/runs/pipeline*
 artifacts/runs/pipeline_noisy_5db_sravaani1.0_sarvam105b.jsonl
+!artifacts/runs/llm_only_eval_results.jsonl
 
 # local working notes, not part of the deliverable
 CLAUDE.md
